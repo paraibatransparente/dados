@@ -11,3 +11,5 @@ echo "###-> Empenhos"
 wget http://dados.tce.pb.gov.br/TCE-PB-SAGRES-Empenhos_Esfera_Estadual.txt.gz -P esfera-estadual/
 echo "###-> Folha de Pessoal"
 wget http://dados.tce.pb.gov.br/TCE-PB-SAGRES-Folha_Pessoal_Esfera_Estadual.txt.gz -P esfera-estadual/
+
+gunzip esfera-estadual/*.gz

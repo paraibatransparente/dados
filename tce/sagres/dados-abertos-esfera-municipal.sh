@@ -15,3 +15,5 @@ echo "###-> Estornos"
 wget http://dados.tce.pb.gov.br/TCE-PB-SAGRES-Estornos_Esfera_Municipal.txt.gz -P esfera-municipal/
 echo "###-> Folha de Pessoal"
 get http://dados.tce.pb.gov.br/TCE-PB-SAGRES-Folha_Pessoal_Esfera_Municipal.txt.gz -P esfera-municipal/
+
+gunzip esfera-municipal/*.gz
