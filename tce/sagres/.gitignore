@@ -4,3 +4,7 @@ esfera-municipal/*.txt
 
 esfera-estadual/*.gz
 esfera-estadual/*.txt
+
+# bases de dados são geradas após clone do projeto
+*.db
+*.db-journal

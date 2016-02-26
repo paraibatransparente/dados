@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS estorno;
 CREATE TABLE estorno (
   cd_UGestora INTEGER,
   de_ugestora TEXT,
