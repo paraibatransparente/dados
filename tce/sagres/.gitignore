@@ -1,2 +1,6 @@
-esfera-municipal/
-esfera-estadual/
+# arquivos de dados do TCE
+esfera-municipal/*.gz
+esfera-municipal/*.txt
+
+esfera-estadual/*.gz
+esfera-estadual/*.txt
