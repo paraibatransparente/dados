@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS folha_pessoal;
 CREATE TABLE folha_pessoal (
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   cd_UGestora INTEGER,
   de_ugestora TEXT,
   de_cargo TEXT,

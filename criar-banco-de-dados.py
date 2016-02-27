@@ -37,11 +37,11 @@ def transformar(conexao, arquivo, tabela):
     # @see https://pagehalffull.wordpress.com/2012/11/14/python-script-to-count-tables-columns-and-rows-in-sqlite-database/
     tableInfo = "PRAGMA table_info(%s)" % tabela
     cursor.execute(tableInfo)
-    qt_colunas_tabela = len(cursor.fetchall())
+    qt_colunas_tabela = len(cursor.fetchall()) - 1
 
     # texto do INSERT na tabela
     # exemplo: INSERT INTO estorno VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    tx_insert = 'INSERT INTO '+tabela+' VALUES ('
+    tx_insert = 'INSERT INTO '+tabela+' VALUES (NULL, '
     for i in range(qt_colunas_tabela):
         if i != max(range(qt_colunas_tabela)):
             tx_insert = tx_insert + '?, '

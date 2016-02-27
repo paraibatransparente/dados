@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS receita_orcamentaria;
 CREATE TABLE receita_orcamentaria (
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   cd_ugestora INTEGER,
   de_ugestora TEXT,
   dt_ano INTEGER,

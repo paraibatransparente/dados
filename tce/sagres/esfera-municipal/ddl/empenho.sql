@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS empenho;
 CREATE TABLE empenho (
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   cd_ugestora INTEGER,
   de_ugestora TEXT,
   dt_Ano INTEGER,

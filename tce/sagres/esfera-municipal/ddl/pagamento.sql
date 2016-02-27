@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS pagamento;
-CREATE TABLE pagamento(
+CREATE TABLE pagamento (
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   cd_UGestora INTEGER,
   de_ugestora TEXT,
   dt_Ano INTEGER,

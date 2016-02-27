@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS estorno;
 CREATE TABLE estorno (
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   cd_UGestora INTEGER,
   de_ugestora TEXT,
   dt_Ano INTEGER,
