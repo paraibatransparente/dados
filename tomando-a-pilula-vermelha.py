@@ -31,7 +31,9 @@ class bcolor:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+print bcolor.BOLD + "####################################################" + bcolor.ENDC
 print bcolor.BOLD + "### INFORME O ÓRGÃO QUE TERÁ OS DADOS IMPORTADOS ###" + bcolor.ENDC
+print bcolor.BOLD + "####################################################" + bcolor.ENDC
 print "# 1 - Tribunal de Contas do Estado da Paraíba (TCE-PB) [tamanho aprox. 20 GB]"
 print bcolor.FAIL + "# X - Tribunal de Contas da União (não implementado)" + bcolor.ENDC
 print bcolor.FAIL + "# X - Câmara dos Deputados (não implementado)" + bcolor.ENDC
@@ -45,44 +47,49 @@ if opcao in [1,0]:
     print bcolor.OKBLUE + "### INICIANDO IMPORTAÇÃO DOS DADOS DO TRIBUNAL DE CONTAS DA PARAÍBA ###" + bcolor.ENDC
     print bcolor.UNDERLINE + "###########################################################" + bcolor.ENDC
     print bcolor.UNDERLINE + "###-> ESFERA MUNICIPAL - Iniciando download de arquivos ###" + bcolor.ENDC
+    print bcolor.UNDERLINE + "###########################################################" + bcolor.ENDC
     path_esfera_municipal = 'tce/sagres/esfera-municipal/'
 
     if not os.path.exists(path_esfera_municipal):
         os.mkdirs(path_esfera_municipal)
 
-    print bcolor.BOLD + "#-> Receita Orçamentária" + bcolor.ENDC
-    call(["wget", "http://dados.tce.pb.gov.br/TCE-PB-SAGRES-Receita_Orcamentaria_Esfera_Municipal.txt.gz", "-P", path_esfera_municipal])
+    list_esfera_municipal = [
+        'TCE-PB-SAGRES-Receita_Orcamentaria_Esfera_Municipal.txt.gz',
+        'TCE-PB-SAGRES-Estornos_Esfera_Municipal.txt.gz',
+        'TCE-PB-SAGRES-Empenhos_Esfera_Municipal.txt.gz',
+        'TCE-PB-SAGRES-Pagamentos_Esfera_Municipal.txt.gz',
+        'TCE-PB-SAGRES-Folha_Pessoal_Esfera_Municipal.txt.gz'
+    ]
 
-    print bcolor.BOLD + "#-> Estornos" + bcolor.ENDC
-    #urllib.urlretrieve("http://dados.tce.pb.gov.br/TCE-PB-SAGRES-Estornos_Esfera_Municipal.txt.gz", filename=path_esfera_municipal+"TCE-PB-SAGRES-Estornos_Esfera_Municipal.txt.gz")
-    call(["wget", "http://dados.tce.pb.gov.br/TCE-PB-SAGRES-Estornos_Esfera_Municipal.txt.gz", "-P", path_esfera_municipal])
+    for arquivo in list_esfera_municipal:
+        print bcolor.BOLD + "#-> " + arquivo + bcolor.ENDC
+        call(["wget", "http://dados.tce.pb.gov.br/"+arquivo, "-P", path_esfera_municipal])
 
-    print bcolor.BOLD + "#-> Empenhos" + bcolor.ENDC
-    call(["wget", "http://dados.tce.pb.gov.br/TCE-PB-SAGRES-Empenhos_Esfera_Municipal.txt.gz", "-P", path_esfera_municipal])
-
-    print bcolor.BOLD + "#-> Pagamentos" + bcolor.ENDC
-    call(["wget", "http://dados.tce.pb.gov.br/TCE-PB-SAGRES-Pagamentos_Esfera_Municipal.txt.gz", "-P", path_esfera_municipal])
-
-    print bcolor.BOLD + "#-> Folha de Pessoal" + bcolor.ENDC
-    call(["wget", "http://dados.tce.pb.gov.br/TCE-PB-SAGRES-Folha_Pessoal_Esfera_Municipal.txt.gz", "-P", path_esfera_municipal])
+    print bcolor.OKBLUE + "#-> Iniciando criação da base de dados SQLITE" + bcolor.ENDC
+    execfile(os.getcwd()+'/tce/sagres/criar-banco-de-dados.py municipal')
 
     # ESFERA ESTADUAL
     print bcolor.UNDERLINE + "##########################################################" + bcolor.ENDC
     print bcolor.UNDERLINE + "###-> ESFERA ESTADUAL - Iniciando download de arquivos ###" + bcolor.ENDC
+    print bcolor.UNDERLINE + "##########################################################" + bcolor.ENDC
     path_esfera_estadual = 'tce/sagres/esfera-estadual/'
 
     if not os.path.exists(path_esfera_estadual):
         os.mkdirs(path_esfera_estadual)
 
-    print bcolor.BOLD + "#-> Receita Orçamentária" + bcolor.ENDC
-    call(["wget", "http://dados.tce.pb.gov.br/TCE-PB-SAGRES-Receita_Orcamentaria_Esfera_Estadual.txt.gz", "-P", path_esfera_estadual])
-    print bcolor.BOLD + "#-> Empenhos" + bcolor.ENDC
-    call(["wget", "http://dados.tce.pb.gov.br/TCE-PB-SAGRES-Empenhos_Esfera_Estadual.txt.gz", "-P", path_esfera_estadual])
-    print bcolor.BOLD + "#-> Folha de Pessoal" + bcolor.ENDC
-    call(["wget", "http://dados.tce.pb.gov.br/TCE-PB-SAGRES-Folha_Pessoal_Esfera_Estadual.txt.gz", "-P", path_esfera_estadual])
+    list_esfera_estadual = [
+        'TCE-PB-SAGRES-Receita_Orcamentaria_Esfera_Estadual.txt.gz',
+        'TCE-PB-SAGRES-Empenhos_Esfera_Estadual.txt.gz',
+        'TCE-PB-SAGRES-Folha_Pessoal_Esfera_Estadual.txt.gz'
+    ]
+
+    for arquivo in list_esfera_estadual:
+        print bcolor.BOLD + "#-> " + arquivo + bcolor.ENDC
+        call(["wget", "http://dados.tce.pb.gov.br/"+arquivo, "-P", path_esfera_estadual])
 
     print bcolor.OKBLUE + "#-> Iniciando criação da base de dados SQLITE" + bcolor.ENDC
-    execfile(os.getcwd()+'/tce/sagres/criar-banco-de-dados.py')
+    execfile(os.getcwd()+'/tce/sagres/criar-banco-de-dados.py estadual')
+
 else:
     print bcolor.FAIL + "Opção inválida: " + bcolor.ENDC, opcao
     exit()

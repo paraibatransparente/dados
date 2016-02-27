@@ -2,6 +2,7 @@
 import sqlite3 # biblioteca necessária para trabalhar com sqlite3
 import gzip # bilioteca para trabalhar com arquivos compactados
 import os
+import sys
 
 """
 Classe utilizada para colorir saída do terminal
@@ -25,7 +26,7 @@ def conectar(path_banco):
 
     return conexao
 
-def transformar(conexao, arquivo, tabela):
+def transformar(conexao, esfera, arquivo, tabela):
     print bcolor.OKBLUE + "###-> TRANSFORMANDO ARQUIVO" + bcolor.ENDC, arquivo
     print "# O arquivo irá gerar a tabela", tabela
 
@@ -33,7 +34,7 @@ def transformar(conexao, arquivo, tabela):
     cursor = conexao.cursor()
 
     print "# criando estrutura da tabela", tabela
-    cursor.executescript(open('tce/sagres/esfera-municipal/ddl/'+tabela+'.sql').read())
+    cursor.executescript(open(os.getcwd()+'/esfera-'+esfera+'/ddl/'+tabela+'.sql').read())
 
     # lendo quantidade de colunas da tabela
     # @see https://pagehalffull.wordpress.com/2012/11/14/python-script-to-count-tables-columns-and-rows-in-sqlite-database/
@@ -52,7 +53,7 @@ def transformar(conexao, arquivo, tabela):
 
     print bcolor.UNDERLINE + "# iniciando leitura do arquivo..." + bcolor.ENDC
     cont_linhas = 1
-    for linha in gzip.open('tce/sagres/esfera-municipal/'+arquivo, 'rb'):
+    for linha in gzip.open(os.getcwd()+'/esfera-'+esfera+'/'+arquivo, 'rb'):
         if cont_linhas > 1: # pulando o cabeçalho do arquivo
             # transformando linhas em lista de valores para inserir no banco
             colunas = linha.strip().split("|")
@@ -76,20 +77,41 @@ def transformar(conexao, arquivo, tabela):
     else:
         print bcolor.OKGREEN + "#-> Arquivo transformando com sucesso!" + bcolor.ENDC + '\n'
 
+# parâmetro passado via linha de comando
+esfera = sys.argv[1]
+if esfera not in ['municipal', 'estadual']:
+    print "Esfera invalida! Informe esfera estadual ou municipal em letras minusculas"
+    exit()
+
 # conectando ao banco de dados
 try:
-    conexao = conectar('tce/sagres/esfera-municipal/esfera-municipal.db')
+    conexao = conectar(os.getcwd()+'/esfera-'+esfera+'/esfera-'+esfera+'.db')
 except Exception as e:
     print "Erro ao conectar:", e
     exit()
 
+list_esfera_municipal = [
+    ['TCE-PB-SAGRES-Receita_Orcamentaria_Esfera_Municipal.txt.gz', 'receita_orcamentaria'],
+    ['TCE-PB-SAGRES-Empenhos_Esfera_Municipal.txt.gz', 'empenho'],
+    ['TCE-PB-SAGRES-Pagamentos_Esfera_Municipal.txt.gz', 'pagamento'],
+    ['TCE-PB-SAGRES-Estornos_Esfera_Municipal.txt.gz', 'estorno'],
+    ['TCE-PB-SAGRES-Folha_Pessoal_Esfera_Municipal.txt.gz', 'folha_pessoal']
+]
+
+list_esfera_estadual = [
+    ['TCE-PB-SAGRES-Receita_Orcamentaria_Esfera_Estadual.txt.gz', 'receita_orcamentaria'],
+    ['TCE-PB-SAGRES-Empenhos_Esfera_Estadual.txt.gz', 'empenho'],
+    ['TCE-PB-SAGRES-Folha_Pessoal_Esfera_Estadual.txt.gz', 'folha_pessoal']
+]
+
 # iniciando transformação dos arquivos
 try:
-    transformar(conexao, 'TCE-PB-SAGRES-Receita_Orcamentaria_Esfera_Municipal.txt.gz', 'receita_orcamentaria')
-    transformar(conexao, 'TCE-PB-SAGRES-Empenhos_Esfera_Municipal.txt.gz', 'empenho')
-    transformar(conexao, 'TCE-PB-SAGRES-Pagamentos_Esfera_Municipal.txt.gz', 'pagamento')
-    transformar(conexao, 'TCE-PB-SAGRES-Estornos_Esfera_Municipal.txt.gz', 'estorno')
-    transformar(conexao, 'TCE-PB-SAGRES-Folha_Pessoal_Esfera_Municipal.txt.gz', 'folha_pessoal')
+    if esfera == 'municipal':
+        for arquivo in list_esfera_municipal:
+            transformar(conexao, esfera, arquivo[0], arquivo[1])
+    else:
+        for arquivo in list_esfera_estadual:
+            transformar(conexao, esfera, arquivo[0], arquivo[1])
 except Exception as e:
     print "Erro ao transformar arquivo:", e
     exit()
