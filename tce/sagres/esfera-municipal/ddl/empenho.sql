@@ -21,5 +21,7 @@ CREATE TABLE empenho (
   cd_credor VARCHAR(14),
   no_Credor TEXT,
   de_Historico TEXT,
-  nu_Obra VARCHAR(8)
+  nu_Obra VARCHAR(8),
+  cd_municipio VARCHAR(3),
+  FOREIGN KEY (cd_municipio) REFERENCES municipio (cd_municipio)
 );
