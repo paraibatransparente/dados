@@ -40,6 +40,11 @@ except Exception as e:
     print "Erro ao conectar:", e
     exit()
 
+print "# criando estrutura da tabela TIPO_UNIDADE_GESTORA"
+cursor = conexao.cursor()
+cursor_insert = conexao.cursor()
+cursor.executescript(open(os.getcwd()+'/ddl/tipo_unidade_gestora.sql').read())
+
 print "# criando estrutura da tabela UNIDADE_GESTORA"
 cursor = conexao.cursor()
 cursor_insert = conexao.cursor()
@@ -79,6 +84,11 @@ cursor_upd = conexao.cursor()
 for municipio in (cursor.execute('SELECT cd_municipio, de_municipio FROM municipio')):
     print remover_acentos(municipio[1]).lower().replace(" ", "-")
     cursor_upd.execute('UPDATE municipio SET ds_link = ? WHERE cd_municipio = ?', (remover_acentos(municipio[1]).lower().replace(" ", "-"), municipio[0], ))
+
+print "Criando tabela de funções"
+cursor = conexao.cursor()
+cursor.executescript(open(os.getcwd()+'/ddl/funcao.sql').read())
+cursor.close()
 
 conexao.commit()
 cursor_upd.close()
