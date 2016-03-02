@@ -78,13 +78,6 @@ cursor = conexao.cursor()
 cursor.executescript(open(os.getcwd()+'/ddl/municipio.sql').read())
 cursor.close()
 
-print "Alimentando campo ds_link da tabela municipio"
-cursor = conexao.cursor()
-cursor_upd = conexao.cursor()
-for municipio in (cursor.execute('SELECT cd_municipio, de_municipio FROM municipio')):
-    print remover_acentos(municipio[1]).lower().replace(" ", "-")
-    cursor_upd.execute('UPDATE municipio SET ds_link = ? WHERE cd_municipio = ?', (remover_acentos(municipio[1]).lower().replace(" ", "-"), municipio[0], ))
-
 print "Criando tabela de funções"
 cursor = conexao.cursor()
 cursor.executescript(open(os.getcwd()+'/ddl/funcao.sql').read())
