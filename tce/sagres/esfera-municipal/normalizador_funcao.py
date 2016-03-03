@@ -40,7 +40,7 @@ except Exception as e:
     print "Erro ao conectar:", e
     exit()
 
-print "# criando estrutura da tabela pagamento_historico_gestora_funcao_ano"
+#print "# criando estrutura da tabela pagamento_historico_gestora_funcao_ano"
 #cursor = conexao.cursor()
 #cursor_insert = conexao.cursor()
 #cursor.executescript(open(os.getcwd()+'/ddl/pagamento_historico_gestora_funcao_ano.sql').read())
@@ -49,9 +49,11 @@ print "# criando estrutura da tabela pagamento_historico_gestora_funcao_ano"
 cursor = conexao.cursor()
 cursor_insert = conexao.cursor()
 print "# loop sobre os empenhos"
-for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano = 2014 AND substr(cd_ugestora, 4, 7) = '095' ''')):
+#for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano IN (2014) AND substr(cd_ugestora, 4, 7) = '095' ''')):
+for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano >= 2011''')):
     print str(unidade[0]) + ";" + str(unidade[1])
     cursor2 = conexao.cursor()
+    cursor_insert = conexao.cursor()
     for item in (cursor2.execute('''SELECT e.cd_ugestora, e.de_funcao, p.dt_ano, sum(p.vl_Pagamento) AS vl_total_gestora_funcao_ano
                    FROM empenho e
                    JOIN pagamento p on p.cd_UGestora = e.cd_ugestora
@@ -60,13 +62,13 @@ for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empen
                  WHERE e.dt_Ano = ?
                    AND e.cd_ugestora = ?
                  GROUP BY e.cd_ugestora, e.de_funcao, p.dt_ano''', (unidade[0], unidade[1], ) )):
-        print "INSERT INTO pagamento_historico_gestora_funcao_ano VALUES (NULL, ?, ?, ?, ?)", (item, )
-
+        cursor_insert.executemany('INSERT INTO pagamento_historico_gestora_funcao_ano VALUES (NULL, ?, ?, ?, ?)', (item, ))
+    conexao.commit()
+    cursor_insert.close()
     cursor2.close()
 
+conexao.commit()
 cursor.close()
-cursor_insert.close()
-#conexao.commit()
 
 print "Fechando conexão ao banco"
 conexao.close()
