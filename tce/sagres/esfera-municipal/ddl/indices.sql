@@ -10,6 +10,20 @@ CREATE INDEX IF NOT EXISTS idx_empenho_dt_empenho ON empenho (dt_empenho);
 CREATE INDEX IF NOT EXISTS idx_empenho_cd_credor ON empenho (cd_credor);
 CREATE INDEX IF NOT EXISTS idx_empenho_nu_Obra ON empenho (nu_Obra);
 CREATE INDEX IF NOT EXISTS idx_empenho_cd_municipio ON empenho (cd_municipio);
+
+-- INDICES TEMPORÁRIOS
+CREATE INDEX IF NOT EXISTS idx_empenho_de_funcao ON empenho (de_funcao);
+CREATE INDEX IF NOT EXISTS idx_empenho_de_Elemento ON empenho (de_Elemento);
+CREATE INDEX IF NOT EXISTS idx_empenho_de_tipolicitacao ON empenho (de_tipolicitacao);
+
+CREATE INDEX IF NOT EXISTS idx_empenho_de_Subfuncao ON empenho (de_Subfuncao);
+CREATE INDEX IF NOT EXISTS idx_empenho_de_Programa ON empenho (de_Programa);
+CREATE INDEX IF NOT EXISTS idx_empenho_de_Acao ON empenho (de_Acao);
+CREATE INDEX IF NOT EXISTS idx_empenho_de_CatEconomica ON empenho (de_CatEconomica);
+CREATE INDEX IF NOT EXISTS idx_empenho_de_NatDespesa ON empenho (de_NatDespesa);
+CREATE INDEX IF NOT EXISTS idx_empenho_de_Modalidade ON empenho (de_Modalidade);
+
+
 -- ESTORNO
 CREATE INDEX IF NOT EXISTS idx_estorno_cd_ugestora ON estorno (cd_ugestora);
 CREATE INDEX IF NOT EXISTS idx_estorno_dt_Ano ON estorno (dt_Ano);
