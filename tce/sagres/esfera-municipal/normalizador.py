@@ -53,7 +53,10 @@ cursor.executescript(open(os.getcwd()+'/ddl/unidade_gestora.sql').read())
 print "# loop sobre as unidades gestoras da tabela empenho"
 for unidade in (cursor.execute('SELECT DISTINCT cd_ugestora, de_ugestora FROM empenho')):
     #print str(unidade[0]) + ";" + unidade[1]
-    cursor_insert.executemany('INSERT INTO unidade_gestora VALUES (NULL, ?, ?)', (unidade, ))
+    ds_link = unidade[2].replace(',', ' ').replace('.', ' ').replace('-', ' ')
+    ds_link = " ".join(ds_link.split()).replace(' ', '-')
+    ds_link = remover_acentos(ds_link).lower()
+    cursor_insert.executemany('INSERT INTO unidade_gestora VALUES (NULL, ?, ?, ?)', (unidade[0], unidade[1], ds_link, ))
 
 conexao.commit()
 cursor.close()
