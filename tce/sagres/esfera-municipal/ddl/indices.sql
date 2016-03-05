@@ -49,3 +49,6 @@ CREATE INDEX IF NOT EXISTS idx_receita_orcamentaria_cd_municipio ON receita_orca
 -- UNIDADE GESTORA
 CREATE INDEX IF NOT EXISTS idx_unidade_gestora_cd_ugestora ON unidade_gestora (cd_ugestora);
 CREATE INDEX IF NOT EXISTS idx_unidade_gestora_cd_municipio ON unidade_gestora (cd_municipio);
+-- PAGAMENTO HISTORICO GESTORA FUNCAO ANO
+CREATE INDEX IF NOT EXISTS idx_pagamento_historico_gestora_funcao_ano_cd_ugestora ON pagamento_historico_gestora_funcao_ano (cd_ugestora);
+CREATE INDEX IF NOT EXISTS idx_pagamento_historico_gestora_funcao_ano_dt_ano ON pagamento_historico_gestora_funcao_ano (dt_ano);
