@@ -30,3 +30,12 @@ Acompanhe abaixo que dados já são importados
  * [ ] Prestação de contas de campanha;
  * [ ] Votação nominal por UF e município;
  * [ ] Filiações partidárias;
+
+## Congresso Nacional
+ * [ ] Senado Federal
+ * [ ] Câmara dos Deputados
+   * [ ] Deputados [WebService Deputados](http://www2.camara.leg.br/transparencia/dados-abertos/dados-abertos-legislativo/webservices/deputados)
+   * [ ] Órgãos
+   * [ ] Proposições
+   * [ ] Sessões/Reuniões
+   * [ ] Cota Parlamentar [Download dos Arquivos](http://www2.camara.leg.br/transparencia/cota-para-exercicio-da-atividade-parlamentar/dados-abertos-cota-parlamentar)
