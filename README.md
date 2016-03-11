@@ -27,7 +27,7 @@ Acompanhe abaixo que dados já são importados
  * [x] Esfera Municipal;
 
 ## Controladoria Geral da União - Governo Federal
- * Origem: http://transparencia.gov.br
+ * Origem: http://transparencia.gov.br/downloads/
  * [ ] Despesas
  * [ ] Receitas
  * [ ] Convênios
