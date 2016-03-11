@@ -26,6 +26,14 @@ Acompanhe abaixo que dados já são importados
  * [x] Esfera Estadual;
  * [x] Esfera Municipal;
 
+## Controladoria Geral da União - Governo Federal
+ * Origem: http://transparencia.gov.br
+ * [ ] Despesas
+ * [ ] Receitas
+ * [ ] Convênios
+ * [ ] Sanções
+ * [ ] Servidores
+
 ## Tribunal Superior Eleitoral
  * [ ] Prestação de contas de campanha;
  * [ ] Votação nominal por UF e município;
