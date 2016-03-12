@@ -27,7 +27,7 @@ download. Iremos procurar informar o tamanho aproximado de cada download.
 ### Executando
 
 ```bash
-python tomando-a-pilula-vermelha.py
+make tomar-pilula-vermelha
 ```
 
 ## Dados que já são importados

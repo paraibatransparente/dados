@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
-from subprocess import call
 
 """
 Script de importação de dados
@@ -17,6 +15,11 @@ Como funciona:
 ##-> Origem: http://portal.tce.pb.gov.br/dados-abertos-do-sagres-tcepb/
 """
 
+import os
+from subprocess import call
+
+os.system('cls' if os.name == 'nt' else 'clear')
+
 """
 Classe utilizada para colorir saída do terminal
 @see http://stackoverflow.com/questions/287871/print-in-terminal-with-colors-using-python
@@ -31,9 +34,9 @@ class bcolor:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-print bcolor.BOLD + "####################################################" + bcolor.ENDC
-print bcolor.BOLD + "### INFORME O ÓRGÃO QUE TERÁ OS DADOS IMPORTADOS ###" + bcolor.ENDC
-print bcolor.BOLD + "####################################################" + bcolor.ENDC
+print bcolor.ENDC
+print bcolor.BOLD + " INFORME O ÓRGÃO QUE TERÁ OS DADOS IMPORTADOS" + bcolor.ENDC
+print bcolor.BOLD + " ============================================" + bcolor.ENDC
 print "# 1 - Tribunal de Contas do Estado da Paraíba (TCE-PB) [tamanho aprox. 20 GB]"
 print bcolor.FAIL + "# X - Tribunal de Contas da União (não implementado)" + bcolor.ENDC
 print bcolor.FAIL + "# X - Câmara dos Deputados (não implementado)" + bcolor.ENDC
