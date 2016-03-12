@@ -20,16 +20,15 @@ download. Iremos procurar informar o tamanho aproximado de cada download.
 
 ### Requisitos
 
- * [Python][python] >= 2.7
- * [SQLite 3][sqllite]
+  * [Python][python] >= 2.7
+  * [SQLite 3][sqllite]
 
 
 ### Executando
 
 ```bash
-python tomando-a-pilula-vermelha
+python tomando-a-pilula-vermelha.py
 ```
-
 
 ## Dados que já são importados
 
@@ -39,32 +38,33 @@ Ajude a implementar a importação destes dados.
 
 *Origem: [portal.tce.pb.gov.br/dados-abertos-do-sagres-tcepb][sagres-tcepb]*
 
- * [x] Esfera Estadual;
- * [x] Esfera Municipal;
+  * [x] Esfera Estadual;
+  * [x] Esfera Municipal;
 
 **Controladoria Geral da União - Governo Federal**
 
 *Origem: [transparencia.gov.br/downloads][transparencia]*
 
- * [ ] Despesas
- * [ ] Receitas
- * [ ] Convênios
- * [ ] Sanções
- * [ ] Servidores
+  * [ ] Despesas
+  * [ ] Receitas
+  * [ ] Convênios
+  * [ ] Sanções
+  * [ ] Servidores
 
 **Tribunal Superior Eleitoral**
- * [ ] Prestação de contas de campanha;
- * [ ] Votação nominal por UF e município;
- * [ ] Filiações partidárias;
+
+  * [ ] Prestação de contas de campanha;
+  * [ ] Votação nominal por UF e município;
+  * [ ] Filiações partidárias;
 
 **Congresso Nacional**
- * [ ] Senado Federal
- * [ ] Câmara dos Deputados
-   * [ ] [Deputados][deputados]
-   * [ ] Órgãos
-   * [ ] Proposições
-   * [ ] Sessões/Reuniões
-   * [ ] [Cota Parlamentar][cota-parlamentar]
+  * [ ] Senado Federal
+  * [ ] Câmara dos Deputados
+    * [ ] [Deputados][deputados-ws]
+      * [ ] Órgãos
+      * [ ] Proposições
+      * [ ] Sessões/Reuniões
+      * [ ] [Cota Parlamentar][cota-parlamentar]
 
 
 ## Licença
@@ -77,5 +77,5 @@ Ajude a implementar a importação destes dados.
 [sqllite]: https://www.sqlite.org
 [sagres-tcepb]: http://portal.tce.pb.gov.br/dados-abertos-do-sagres-tcepb
 [transparencia]: http://transparencia.gov.br/downloads
-[deputados]: http://www2.camara.leg.br/transparencia/dados-abertos/dados-abertos-legislativo/webservices/deputados
+[deputados-ws]: http://www2.camara.leg.br/transparencia/dados-abertos/dados-abertos-legislativo/webservices/deputados
 [cota-parlamentar]: http://www2.camara.leg.br/transparencia/cota-para-exercicio-da-atividade-parlamentar/dados-abertos-cota-parlamentar
