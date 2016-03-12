@@ -34,9 +34,9 @@ class bcolor:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-print bcolor.ENDC
-print bcolor.BOLD + " INFORME O ÓRGÃO QUE TERÁ OS DADOS IMPORTADOS" + bcolor.ENDC
-print bcolor.BOLD + " ============================================" + bcolor.ENDC
+print bcolor.BOLD + "####################################################" + bcolor.ENDC
+print bcolor.BOLD + "### INFORME O ÓRGÃO QUE TERÁ OS DADOS IMPORTADOS ###" + bcolor.ENDC
+print bcolor.BOLD + "####################################################" + bcolor.ENDC
 print "# 1 - Tribunal de Contas do Estado da Paraíba (TCE-PB) [tamanho aprox. 20 GB]"
 print bcolor.FAIL + "# X - Tribunal de Contas da União (não implementado)" + bcolor.ENDC
 print bcolor.FAIL + "# X - Câmara dos Deputados (não implementado)" + bcolor.ENDC
