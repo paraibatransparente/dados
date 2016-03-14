@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
-from subprocess import call
 
 """
 Script de importação de dados
@@ -16,6 +14,11 @@ Como funciona:
 ## Órgão: TCE-PB (Tribunal de Contas do Estado da Paraiba)
 ##-> Origem: http://portal.tce.pb.gov.br/dados-abertos-do-sagres-tcepb/
 """
+
+import os
+from subprocess import call
+
+os.system('cls' if os.name == 'nt' else 'clear')
 
 """
 Classe utilizada para colorir saída do terminal
