@@ -23,7 +23,6 @@ CREATE INDEX IF NOT EXISTS idx_empenho_de_CatEconomica ON empenho (de_CatEconomi
 CREATE INDEX IF NOT EXISTS idx_empenho_de_NatDespesa ON empenho (de_NatDespesa);
 CREATE INDEX IF NOT EXISTS idx_empenho_de_Modalidade ON empenho (de_Modalidade);
 
-
 -- ESTORNO
 CREATE INDEX IF NOT EXISTS idx_estorno_cd_ugestora ON estorno (cd_ugestora);
 CREATE INDEX IF NOT EXISTS idx_estorno_dt_Ano ON estorno (dt_Ano);
@@ -46,9 +45,16 @@ CREATE INDEX IF NOT EXISTS idx_receita_orcamentaria_cd_ugestora ON receita_orcam
 CREATE INDEX IF NOT EXISTS idx_receita_orcamentaria_dt_ano ON receita_orcamentaria (dt_ano);
 CREATE INDEX IF NOT EXISTS idx_receita_orcamentaria_dt_mesano ON receita_orcamentaria (dt_mesano);
 CREATE INDEX IF NOT EXISTS idx_receita_orcamentaria_cd_municipio ON receita_orcamentaria (cd_municipio);
+CREATE INDEX IF NOT EXISTS idx_receita_orcamentaria_de_atualizacaoreceita ON receita_orcamentaria (de_atualizacaoreceita);
 -- UNIDADE GESTORA
 CREATE INDEX IF NOT EXISTS idx_unidade_gestora_cd_ugestora ON unidade_gestora (cd_ugestora);
 CREATE INDEX IF NOT EXISTS idx_unidade_gestora_cd_municipio ON unidade_gestora (cd_municipio);
+CREATE INDEX IF NOT EXISTS idx_unidade_gestora_cd_tipo_unidade_gestora ON unidade_gestora (cd_tipo_unidade_gestora);
 -- PAGAMENTO HISTORICO GESTORA FUNCAO ANO
 CREATE INDEX IF NOT EXISTS idx_pagamento_historico_gestora_funcao_ano_cd_ugestora ON pagamento_historico_gestora_funcao_ano (cd_ugestora);
 CREATE INDEX IF NOT EXISTS idx_pagamento_historico_gestora_funcao_ano_dt_ano ON pagamento_historico_gestora_funcao_ano (dt_ano);
+CREATE INDEX IF NOT EXISTS idx_pagamento_historico_gestora_funcao_ano_de_funcao ON pagamento_historico_gestora_funcao_ano (de_funcao);
+-- PAGAMENTO HISTORICO GESTORA ELEMENTO ANO
+CREATE INDEX IF NOT EXISTS idx_pagamento_historico_gestora_elemento_ano_cd_ugestora ON pagamento_historico_gestora_elemento_ano (cd_ugestora);
+CREATE INDEX IF NOT EXISTS idx_pagamento_historico_gestora_elemento_ano_dt_ano ON pagamento_historico_gestora_elemento_ano (dt_ano);
+CREATE INDEX IF NOT EXISTS idx_pagamento_historico_gestora_elemento_ano_de_funcao ON pagamento_historico_gestora_elemento_ano (de_elemento);
