@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import sqlite3 # biblioteca necessária para trabalhar com sqlite3
 import os
+import sys
 from unicodedata import normalize
 
 """
@@ -46,10 +47,13 @@ except Exception as e:
 #cursor.executescript(open(os.getcwd()+'/ddl/pagamento_historico_gestora_funcao_ano.sql').read())
 #cursor.close()
 
+#ano = sys.argv[1]
+
 cursor = conexao.cursor()
 cursor_insert = conexao.cursor()
 print "# loop sobre os empenhos"
 #for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano IN (2014) AND substr(cd_ugestora, 4, 7) = '095' ''')):
+#for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano = ?''', (ano, ))):
 for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano >= 2011''')):
     print str(unidade[0]) + ";" + str(unidade[1])
     cursor2 = conexao.cursor()
