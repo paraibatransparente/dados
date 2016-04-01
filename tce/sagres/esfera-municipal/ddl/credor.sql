@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS credor;
 CREATE TABLE credor (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  cd_credor INTEGER,
+  cd_credor VARCHAR(14),
   no_Credor TEXT
 );
