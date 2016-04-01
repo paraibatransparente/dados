@@ -58,3 +58,15 @@ CREATE INDEX IF NOT EXISTS idx_pagamento_historico_gestora_funcao_ano_de_funcao 
 CREATE INDEX IF NOT EXISTS idx_pagamento_historico_gestora_elemento_ano_cd_ugestora ON pagamento_historico_gestora_elemento_ano (cd_ugestora);
 CREATE INDEX IF NOT EXISTS idx_pagamento_historico_gestora_elemento_ano_dt_ano ON pagamento_historico_gestora_elemento_ano (dt_ano);
 CREATE INDEX IF NOT EXISTS idx_pagamento_historico_gestora_elemento_ano_de_funcao ON pagamento_historico_gestora_elemento_ano (de_elemento);
+-- EMPENHO HISTORICO GESTORA FUNCAO ANO
+CREATE INDEX IF NOT EXISTS idx_empenho_historico_gestora_funcao_ano_cd_ugestora ON empenho_historico_gestora_funcao_ano (cd_ugestora);
+CREATE INDEX IF NOT EXISTS idx_empenho_historico_gestora_funcao_ano_dt_ano ON empenho_historico_gestora_funcao_ano (dt_ano);
+CREATE INDEX IF NOT EXISTS idx_empenho_historico_gestora_funcao_ano_de_funcao ON empenho_historico_gestora_funcao_ano (de_funcao);
+-- CREDOR EMPENHO HISTORICO GESTORA FUNCAO ANO
+CREATE INDEX IF NOT EXISTS idx_credor_empenho_historico_gestora_funcao_ano_cd_ugestora ON credor_empenho_historico_gestora_funcao_ano (cd_ugestora);
+CREATE INDEX IF NOT EXISTS idx_credor_empenho_historico_gestora_funcao_ano_dt_ano ON credor_empenho_historico_gestora_funcao_ano (dt_ano);
+CREATE INDEX IF NOT EXISTS idx_credor_empenho_historico_gestora_funcao_ano_de_funcao ON credor_empenho_historico_gestora_funcao_ano (de_funcao);
+-- CREDOR PAGAMENTO HISTORICO GESTORA FUNCAO ANO
+CREATE INDEX IF NOT EXISTS idx_credor_pagamento_historico_gestora_funcao_ano_cd_ugestora ON credor_pagamento_historico_gestora_funcao_ano (cd_ugestora);
+CREATE INDEX IF NOT EXISTS idx_credor_pagamento_historico_gestora_funcao_ano_dt_ano ON credor_pagamento_historico_gestora_funcao_ano (dt_ano);
+CREATE INDEX IF NOT EXISTS idx_credor_pagamento_historico_gestora_funcao_ano_de_funcao ON credor_pagamento_historico_gestora_funcao_ano (de_funcao);
