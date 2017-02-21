@@ -4,6 +4,7 @@ CREATE TABLE receita_orcamentaria (
   cd_ugestora INTEGER,
   de_ugestora TEXT,
   dt_ano INTEGER,
+  cd_receitaOrcUg INTEGER,
   de_receitaOrcUg TEXT,
   de_atualizacaoreceita TEXT,
   vl_lancamentoOrc NUMERIC(12,4),
