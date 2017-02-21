@@ -68,9 +68,6 @@ if opcao in [1,0]:
         print bcolor.BOLD + "#-> " + arquivo + bcolor.ENDC
         call(["wget", "http://dados.tce.pb.gov.br/"+arquivo, "-P", path_esfera_municipal])
 
-    print bcolor.OKBLUE + "#-> Iniciando criação da base de dados SQLITE" + bcolor.ENDC
-    execfile(os.getcwd()+'/tce/sagres/criar-banco-de-dados.py municipal')
-
     # ESFERA ESTADUAL
     print bcolor.UNDERLINE + "##########################################################" + bcolor.ENDC
     print bcolor.UNDERLINE + "###-> ESFERA ESTADUAL - Iniciando download de arquivos ###" + bcolor.ENDC
@@ -89,9 +86,6 @@ if opcao in [1,0]:
     for arquivo in list_esfera_estadual:
         print bcolor.BOLD + "#-> " + arquivo + bcolor.ENDC
         call(["wget", "http://dados.tce.pb.gov.br/"+arquivo, "-P", path_esfera_estadual])
-
-    print bcolor.OKBLUE + "#-> Iniciando criação da base de dados SQLITE" + bcolor.ENDC
-    execfile(os.getcwd()+'/tce/sagres/criar-banco-de-dados.py estadual')
 
 else:
     print bcolor.FAIL + "Opção inválida: " + bcolor.ENDC, opcao
