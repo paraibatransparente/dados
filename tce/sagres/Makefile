@@ -27,6 +27,6 @@ criar-bd-estadual:
 
 limpar:
 	@rm -rf \
-		esfera-municipal/*.sqlite \
-		esfera-estadual/*.sqlite
+		esfera-municipal/*.db \
+		esfera-estadual/*.db
 	@echo "$(cblue)Os arquivos SQLite gerados foram removidos!$(endc)"
