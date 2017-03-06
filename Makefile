@@ -20,6 +20,7 @@ help:
 
 tomar-pilula-vermelha:
 	$(python) setup.py
+	$(python) tce/sagres/criar-banco-de-dados.py municipal
 
 limpar:
 	@rm -rf \
