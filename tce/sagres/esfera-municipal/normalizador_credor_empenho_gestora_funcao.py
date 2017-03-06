@@ -75,11 +75,11 @@ for unidade in (cursor.execute('''
                 ,e.cd_credor
                 ,e.no_credor
                 ,e.de_funcao
-                ,e.dt_ano''', (ano, unidade[1], ) )):
+                ,e.dt_ano''', (unidade[0], unidade[1], ) )):
         cursor_insert.executemany('INSERT INTO credor_empenho_historico_gestora_funcao_ano VALUES (NULL, ?, ?, ?, ?, ?, ?)', (item, ))
     conexao.commit()
-    cursor_insert.close()
-    cursor2.close()
+    #cursor_insert.close()
+    #cursor2.close()
 
 conexao.commit()
 cursor.close()
