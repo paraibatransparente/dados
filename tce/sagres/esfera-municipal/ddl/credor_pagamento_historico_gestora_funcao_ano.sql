@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS credor_historico_gestora_funcao_ano;
-CREATE TABLE credor_historico_gestora_funcao_ano (
+DROP TABLE IF EXISTS credor_pagamento_historico_gestora_funcao_ano;
+CREATE TABLE credor_pagamento_historico_gestora_funcao_ano (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   cd_ugestora INTEGER,
   cd_credor VARCHAR(14),
@@ -10,11 +10,12 @@ CREATE TABLE credor_historico_gestora_funcao_ano (
 );
 
 /*
-DROP TABLE IF EXISTS credor_historico_gestora_funcao_ano;
-CREATE TABLE credor_historico_gestora_funcao_ano AS
+DROP TABLE IF EXISTS credor_pagamento_historico_gestora_funcao_ano;
+CREATE TABLE credor_pagamento_historico_gestora_funcao_ano AS
 SELECT cd_ugestora
    ,cd_credor
   ,no_Credor
+  ,sum((CASE WHEN dt_ano = 2016 THEN vl_Pagamento ELSE 0 END)) AS a2015
   ,sum((CASE WHEN dt_ano = 2015 THEN vl_Pagamento ELSE 0 END)) AS a2015
   ,sum((CASE WHEN dt_ano = 2014 THEN vl_Pagamento ELSE 0 END)) AS a2014
   ,sum((CASE WHEN dt_ano = 2013 THEN vl_Pagamento ELSE 0 END)) AS a2013
@@ -31,7 +32,7 @@ FROM (
     JOIN pagamento p ON p.cd_UGestora = e.cd_ugestora
                         AND p.dt_Ano = e.dt_Ano
                         AND p.nu_Empenho = e.nu_Empenho
-  WHERE e.dt_Ano IN (2015, 2014, 2013, 2012, 2011)
+  WHERE e.dt_Ano IN (2016, 2015, 2014, 2013, 2012, 2011)
     AND e.cd_ugestora = '101095'
     AND e.de_Funcao = 'Comunicações'
   GROUP BY e.cd_ugestora

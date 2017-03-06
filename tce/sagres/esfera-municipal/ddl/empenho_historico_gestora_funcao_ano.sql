@@ -8,18 +8,15 @@ CREATE TABLE empenho_historico_gestora_funcao_ano (
 );
 
 /*
-CREATE TABLE pagamento_historico_gestora_funcao_ano AS
-SELECT e.cd_ugestora, e.de_funcao, p.dt_ano, (round(sum(p.vl_Pagamento), 2)) AS vl_total_gestora_funcao_ano
+CREATE TABLE empenho_historico_gestora_funcao_ano AS
+SELECT e.cd_ugestora, e.de_funcao, e.dt_ano, sum(e.vl_Empenho) AS vl_total
   FROM empenho e
-  JOIN pagamento p on p.cd_UGestora = e.cd_ugestora
-    and p.dt_Ano = e.dt_Ano
-    and p.nu_Empenho = e.nu_Empenho
- WHERE e.dt_Ano = 2013
+ WHERE e.dt_Ano = 2016
    AND e.cd_ugestora = '201095'
- GROUP BY e.cd_ugestora, e.de_funcao, p.dt_ano;
+ GROUP BY e.cd_ugestora, e.de_funcao, e.dt_ano
 
 SELECT *
- FROM pagamento_historico_gestora_funcao_ano
-WHERE dt_Ano = 2013
+ FROM empenho_historico_gestora_funcao_ano
+WHERE dt_Ano = 2016
   AND cd_ugestora = '201095';
 */
