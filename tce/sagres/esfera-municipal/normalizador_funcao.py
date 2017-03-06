@@ -41,21 +41,41 @@ except Exception as e:
     print "Erro ao conectar:", e
     exit()
 
-#print "# criando estrutura da tabela pagamento_historico_gestora_funcao_ano"
-#cursor = conexao.cursor()
-#cursor_insert = conexao.cursor()
-#cursor.executescript(open(os.getcwd()+'/ddl/pagamento_historico_gestora_funcao_ano.sql').read())
-#cursor.close()
+cursor = conexao.cursor()
+print "# criando indice para a coluna empenho.de_funcao"
+cursor.execute('CREATE INDEX IF NOT EXISTS idx_empenho_de_funcao ON empenho (de_funcao);')
+print "# criando indice para a coluna pagamento.nu_Empenho"
+cursor.execute('CREATE INDEX IF NOT EXISTS idx_pagamento_nu_Empenho ON pagamento (nu_Empenho);')
 
-#ano = sys.argv[1]
+print "# criando estrutura da tabela empenho_historico_gestora_funcao_ano"
+cursor.executescript(open(os.getcwd()+'/ddl/empenho_historico_gestora_funcao_ano.sql').read())
+
+print "# criando estrutura da tabela pagamento_historico_gestora_funcao_ano"
+cursor.executescript(open(os.getcwd()+'/ddl/pagamento_historico_gestora_funcao_ano.sql').read())
+cursor.close()
+
+ano = sys.argv[1]
 
 cursor = conexao.cursor()
 cursor_insert = conexao.cursor()
-print "# loop sobre os empenhos"
-#for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano IN (2014) AND substr(cd_ugestora, 4, 7) = '095' ''')):
-#for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano = ?''', (ano, ))):
-for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano >= 2011''')):
-    print str(unidade[0]) + ";" + str(unidade[1])
+print "# loop sobre os empenhos (~ 70 min)"
+#for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano IN (2016) AND substr(cd_ugestora, 4, 7) = '095' ''')):
+for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano >= ? AND cd_municipio IN ('095', '050', '040', '171', '135', '025', '211', '046') ORDER BY dt_ano DESC''', (ano, ))):
+#for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano >= 2011''')):
+    print "Inserindo EMPENHOS para: " + str(unidade[0]) + ";" + str(unidade[1])
+    cursor2 = conexao.cursor()
+    cursor_insert = conexao.cursor()
+    for item in (cursor2.execute('''SELECT e.cd_ugestora, e.de_funcao, e.dt_ano, sum(e.vl_Empenho) AS vl_total
+                   FROM empenho e
+                 WHERE e.dt_Ano = ?
+                   AND e.cd_ugestora = ?
+                 GROUP BY e.cd_ugestora, e.de_funcao, e.dt_ano''', (unidade[0], unidade[1], ) )):
+        cursor_insert.executemany('INSERT INTO empenho_historico_gestora_funcao_ano VALUES (NULL, ?, ?, ?, ?)', (item, ))
+    conexao.commit()
+    cursor_insert.close()
+    cursor2.close()
+
+    print "Inserindo PAGAMENTOS para: " + str(unidade[0]) + ";" + str(unidade[1])
     cursor2 = conexao.cursor()
     cursor_insert = conexao.cursor()
     for item in (cursor2.execute('''SELECT e.cd_ugestora, e.de_funcao, p.dt_ano, sum(p.vl_Pagamento) AS vl_total_gestora_funcao_ano

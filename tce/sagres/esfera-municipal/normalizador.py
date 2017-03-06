@@ -86,18 +86,33 @@ cursor = conexao.cursor()
 cursor.executescript(open(os.getcwd()+'/ddl/funcao.sql').read())
 cursor.close()
 
-conexao.commit()
+print "# script SQL normalizador (~ 5 min)"
+cursor = conexao.cursor()
+cursor.executescript(open(os.getcwd()+'/ddl/normalizador.sql').read())
 cursor.close()
 
-#print "# script SQL normalizador"
-#cursor = conexao.cursor()
-#cursor.executescript(open(os.getcwd()+'/ddl/normalizador.sql').read())
-#cursor.close()
+print "Criando INDICES"
+cursor = conexao.cursor()
+cursor.executescript(open(os.getcwd()+'/ddl/indices.sql').read())
+cursor.close()
 
-#print "Criando INDICES"
-#cursor = conexao.cursor()
-#cursor.executescript(open(os.getcwd()+'/ddl/indices.sql').read())
-#cursor.close()
+print "Criando resumo das receitas (~ 1 min): RECEITA_HISTORICO_GESTORA_ANO"
+cursor = conexao.cursor()
+cursor.executescript(open(os.getcwd()+'/ddl/receita_historico_gestora_ano.sql').read())
+cursor.close()
+
+print "Criando resumo dos empenhos (~ 20 min): EMPENHO_HISTORICO_GESTORA_ANO"
+cursor = conexao.cursor()
+cursor.executescript(open(os.getcwd()+'/ddl/empenho_historico_gestora_ano.sql').read())
+cursor.close()
+
+print "Criando resumo dos pagamentos (~ 10 min): PAGAMENTO_HISTORICO_GESTORA_ANO"
+cursor = conexao.cursor()
+cursor.executescript(open(os.getcwd()+'/ddl/pagamento_historico_gestora_ano.sql').read())
+cursor.close()
+
+conexao.commit()
+cursor.close()
 
 print "Fechando conexão ao banco"
 conexao.close()

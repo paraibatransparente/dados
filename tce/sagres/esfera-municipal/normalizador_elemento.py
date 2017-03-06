@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import sqlite3 # biblioteca necessária para trabalhar com sqlite3
 import os
+import sys
 from unicodedata import normalize
 
 """
@@ -40,17 +41,18 @@ except Exception as e:
     print "Erro ao conectar:", e
     exit()
 
-#print "# criando estrutura da tabela pagamento_historico_gestora_funcao_ano"
-#cursor = conexao.cursor()
-#cursor_insert = conexao.cursor()
-#cursor.executescript(open(os.getcwd()+'/ddl/pagamento_historico_gestora_funcao_ano.sql').read())
-#cursor.close()
+print "# criando estrutura da tabela pagamento_historico_gestora_elemento_ano"
+cursor = conexao.cursor()
+cursor_insert = conexao.cursor()
+cursor.executescript(open(os.getcwd()+'/ddl/pagamento_historico_gestora_elemento_ano.sql').read())
+
+ano = sys.argv[1]
 
 cursor = conexao.cursor()
 cursor_insert = conexao.cursor()
 print "# loop sobre os empenhos"
 #for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano IN (2014) AND substr(cd_ugestora, 4, 7) = '095' ''')):
-for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano >= 2011 ORDER BY dt_ano DESC''')):
+for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano >= ? AND cd_municipio IN ('095', '050', '040', '171', '135', '025', '211', '046') ORDER BY dt_ano DESC''', (ano, ))):
     print str(unidade[0]) + ";" + str(unidade[1])
     cursor2 = conexao.cursor()
     cursor_insert = conexao.cursor()

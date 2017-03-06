@@ -41,19 +41,23 @@ except Exception as e:
     print "Erro ao conectar:", e
     exit()
 
+print "# criando estrutura da tabela credor_empenho_historico_gestora_funcao_ano"
+cursor = conexao.cursor()
+cursor_insert = conexao.cursor()
+cursor.executescript(open(os.getcwd()+'/ddl/credor_empenho_historico_gestora_funcao_ano.sql').read())
+
 ano = sys.argv[1]
 
 cursor = conexao.cursor()
 cursor2 = conexao.cursor()
 cursor_insert = conexao.cursor()
-print "# loop sobre os gestora/função"
-#for unidade in (cursor.execute(''' select cd_ugestora from unidade_gestora where cd_municipio = '095' ''')):
 
+print "# loop sobre os gestora/função (~ 10 min)"
 for unidade in (cursor.execute('''
     SELECT DISTINCT dt_Ano, cd_ugestora
       FROM pagamento_historico_gestora_funcao_ano
-     WHERE dt_Ano IN (?)
-     ORDER BY cd_ugestora
+     WHERE dt_Ano >= ?
+     ORDER BY dt_ano DESC, cd_ugestora
  ''', (ano, ))):
     print str(unidade[0]) + ' | ' + str(unidade[1])
     for item in (cursor2.execute('''
@@ -72,7 +76,7 @@ for unidade in (cursor.execute('''
                 ,e.no_credor
                 ,e.de_funcao
                 ,e.dt_ano''', (ano, unidade[1], ) )):
-        cursor_insert.executemany('INSERT INTO credor_historico_empenho_gestora_funcao_ano VALUES (NULL, ?, ?, ?, ?, ?, ?)', (item, ))
+        cursor_insert.executemany('INSERT INTO credor_empenho_historico_gestora_funcao_ano VALUES (NULL, ?, ?, ?, ?, ?, ?)', (item, ))
     #conexao.commit()
     #cursor_insert.close()
     #cursor2.close()
