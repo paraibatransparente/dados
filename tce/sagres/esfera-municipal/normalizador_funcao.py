@@ -59,8 +59,8 @@ ano = sys.argv[1]
 cursor = conexao.cursor()
 cursor_insert = conexao.cursor()
 print "# loop sobre os empenhos (~ 70 min)"
-#for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano IN (2016) AND substr(cd_ugestora, 4, 7) = '095' ''')):
-for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano >= ? AND cd_municipio IN ('095', '050', '040', '171', '135', '025', '211', '046') ORDER BY dt_ano DESC''', (ano, ))):
+#for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano >= ? AND cd_municipio IN ('095', '050', '040', '171', '135', '025', '211', '046') ORDER BY dt_ano DESC''', (ano, ))):
+for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano >= ? ORDER BY dt_ano DESC''', (ano, ))):
 #for unidade in (cursor.execute('''SELECT DISTINCT dt_ano, cd_ugestora FROM empenho WHERE dt_ano >= 2011''')):
     print "Inserindo EMPENHOS para: " + str(unidade[0]) + ";" + str(unidade[1])
     cursor2 = conexao.cursor()

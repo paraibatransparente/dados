@@ -35,5 +35,5 @@ SELECT ug.cd_ugestora AS cd_ugestora
         WHERE cd_UGestora = ug.cd_UGestora
           AND dt_Ano = 2016) AS '2016'
   FROM unidade_gestora ug
- WHERE ug.cd_municipio IN ('095', '050', '040', '171', '135', '025', '211', '046')
+ -- WHERE ug.cd_municipio IN ('095', '050', '040', '171', '135', '025', '211', '046')
  GROUP BY ug.de_ugestora;

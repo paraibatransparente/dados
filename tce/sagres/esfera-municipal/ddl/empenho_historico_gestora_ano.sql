@@ -69,5 +69,5 @@ SELECT cd_ugestora
        WHERE e.dt_Ano = 2011
              AND e.cd_ugestora = ug.cd_ugestora) AS es2011
     FROM unidade_gestora ug
-   WHERE ug.cd_municipio IN ('095', '050', '040', '171', '135', '025', '211', '046')
+   -- WHERE ug.cd_municipio IN ('095', '050', '040', '171', '135', '025', '211', '046')
 );
