@@ -21,6 +21,10 @@ help:
 tomar-pilula-vermelha:
 	$(python) setup.py
 	$(python) tce/sagres/criar-banco-de-dados.py municipal
+	$(python) tce/sagres/esfera-municipal/normalizador.py
+	$(python) tce/sagres/esfera-municipal/normalizador_funcao.py 2011
+	$(python) tce/sagres/esfera-municipal/normalizador_elemento.py 2011
+	$(python) tce/sagres/esfera-municipal/normalizador_credor_empenho_gestora_funcao.py 2011
 
 limpar:
 	@rm -rf \
