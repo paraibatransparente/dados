@@ -1,15 +1,17 @@
 from subprocess import call
 
 tabelas = [
+    'credor_empenho_historico_gestora_funcao_ano',
+    'empenho_historico_gestora_ano',
+    'empenho_historico_gestora_funcao_ano',
     'funcao',
     'municipio',
-    'tipo_unidade_gestora',
-    'unidade_gestora',
-    'receita_historico_gestora_ano',
-    'empenho_historico_gestora_ano',
     'pagamento_historico_gestora_ano',
     'pagamento_historico_gestora_elemento_ano',
     'pagamento_historico_gestora_funcao_ano',
+    'receita_historico_gestora_ano',
+    'tipo_unidade_gestora',
+    'unidade_gestora'
     ]
 
 for tabela in tabelas:
