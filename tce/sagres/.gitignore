@@ -1,11 +1,9 @@
 # arquivos de dados do TCE
-esfera-municipal/*.gz
-esfera-municipal/*.txt
-
-esfera-estadual/*.gz
-esfera-estadual/*.txt
+esfera-municipal/*.txt.gz
+esfera-estadual/*.txt.gz
 
 # bases de dados são geradas após clone do projeto
-esfera-municipal.db
-esfera-estadual.db
+*.db
 *.db-journal
+*.db.tar.gz
+
