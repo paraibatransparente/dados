@@ -8,5 +8,6 @@ CREATE TABLE folha_pessoal (
   nu_cpf VARCHAR(11),
   no_Servidor TEXT,
   dt_mesano VARCHAR(6),
-  dt_Admissao DATE
+  dt_Admissao DATE,
+  vl_vantagens NUMERIC(12,4)
 );
