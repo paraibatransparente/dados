@@ -1,28 +1,32 @@
 DROP TABLE IF EXISTS empenho;
 CREATE TABLE empenho (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  cd_ugestora INTEGER,
-  de_ugestora TEXT,
-  dt_Ano INTEGER,
-  de_UOrcamentaria TEXT,
-  de_Funcao TEXT,
-  de_Subfuncao TEXT,
-  de_Programa TEXT,
-  de_Acao TEXT,
-  de_CatEconomica TEXT,
-  de_NatDespesa TEXT,
-  de_Modalidade TEXT,
-  cd_elemento TEXT,
-  de_Elemento TEXT,
-  cd_subelemento TEXT,
-  de_subelemento TEXT,
-  de_tipolicitacao TEXT,
-  nu_Licitacao VARCHAR(9),
-  nu_Empenho VARCHAR(10),
-  dt_empenho DATE,
-  vl_Empenho NUMERIC(12,4),
-  cd_credor VARCHAR(14),
-  no_Credor TEXT,
-  de_Historico TEXT,
-  nu_Obra VARCHAR(8)
+  cd_ugestora INTEGER, -- campo numérico, inteiro, contendo o identificador da unidade gestora;
+  de_ugestora TEXT, -- campo texto, para o nome da unidade gestora;
+  dt_Ano INTEGER, -- campo numérico, inteiro, para o ano;
+  de_UOrcamentaria TEXT, -- campo texto para o nome da unidade orçamentária;
+  de_Funcao TEXT, -- campo texto para a função;
+  de_Subfuncao TEXT, -- campo texto para a subfunção;
+  de_Programa TEXT, -- campo texto para o programa;
+  de_Acao TEXT, -- campo texto para a ação;
+  de_CatEconomica TEXT, -- campo texto para a categoria econômica;
+  de_NatDespesa TEXT, -- campo texto para natureza da despesa;
+  de_Modalidade TEXT, -- campo texto para a modalidade;
+  cd_elemento TEXT, -- campo texto para o código do elemento;
+  de_Elemento TEXT, -- campo texto para o elemento;
+  cd_subelemento TEXT, -- campo texto para o código do subelemento;
+  de_subelemento TEXT, -- campo texto para o subelemento;
+  de_tipolicitacao TEXT, -- campo texto para o tipo de licitação;
+  nu_Licitacao VARCHAR(9), -- campo texto para o número da licitação;
+  nu_Empenho VARCHAR(10), -- campo texto para o número do empenho;
+  dt_empenho DATE, -- campo data, com o formato DD/MM/YYYY;
+  vl_Empenho NUMERIC(12,4), -- campo monetário, contendo o valor do empenho, sendo o ponto(.) o separador decimal;
+  cd_credor VARCHAR(14), -- campo texto contendo o CPF ou CNPJ do credor;
+  no_Credor TEXT, -- campo texto contendo o nome do credor;
+  de_Historico TEXT, -- campo texto para o histórico;
+--   de_historico1 TEXT, -- campo texto para o histórico;
+--   de_historico2 TEXT, -- campo texto para o histórico;
+  nu_Obra VARCHAR(8), -- campo texto para o número da obra;
+  tp_fonterecursos TEXT, -- código da fonte de recursos;
+  de_tiporecursos TEXT -- campo texto para a descrição da fonte de recurso;
 );
