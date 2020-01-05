@@ -7,6 +7,7 @@ CREATE TABLE folha_pessoal (
   de_tipocargo TEXT, -- campo texto para o tipo do cargo;
   cd_CPF VARCHAR(11), -- campo texto contendo o CPF do servidor, com mascaramento nos 3 primeiros dígitos e nos 2 últimos;
   dt_MesAnoReferencia VARCHAR(6), -- campo texto contendo o mês e ano, na forma MMYYYY;
+  dt_ano INTEGER,
   no_Servidor TEXT, -- campo texto contendo o nome do servidor;
   vl_vantagens NUMERIC(12,4), -- campo monetário, contendo o valor do salário bruto, sendo o ponto(.) o separador decimal;
   de_UOrcamentaria TEXT -- campo texto para o nome da unidade orçamentária;
