@@ -20,6 +20,6 @@ help:
 
 normalizar:
 	$(python) normalizador.py
-	$(python) normalizador_funcao.py 2011
-	$(python) normalizador_elemento.py 2011
-	$(python) normalizador_credor_empenho_gestora_funcao.py 2011
+	$(python) normalizador_funcao.py 2003
+	$(python) normalizador_elemento.py 2003
+	$(python) normalizador_credor_empenho_gestora_funcao.py 2003

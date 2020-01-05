@@ -47,6 +47,7 @@ CREATE INDEX IF NOT EXISTS idx_folha_pessoal_cd_ugestora ON folha_pessoal (cd_ug
 CREATE INDEX IF NOT EXISTS idx_folha_pessoal_cd_CPF ON folha_pessoal (cd_CPF);
 CREATE INDEX IF NOT EXISTS idx_folha_pessoal_dt_MesAnoReferencia ON folha_pessoal (dt_MesAnoReferencia);
 CREATE INDEX IF NOT EXISTS idx_folha_pessoal_cd_municipio ON folha_pessoal (cd_municipio);
+CREATE INDEX IF NOT EXISTS idx_folha_pessoal_dt_ano ON folha_pessoal (dt_ano);
 
 -- PAGAMENTO HISTORICO GESTORA FUNCAO ANO
 CREATE INDEX IF NOT EXISTS idx_pagamento_historico_gestora_funcao_ano_cd_ugestora ON pagamento_historico_gestora_funcao_ano (cd_ugestora);
